@@ -389,13 +389,13 @@ export function ExitAnalysis() {
                 {Object.entries(results).map(([className, payout]) => (
                   <div key={className} className="flex justify-between items-center">
                     <span className="font-medium capitalize">{className}:</span>
-                    <span className="font-bold">{formatCurrency(payout)}</span>
+                    <span className="font-bold text-gray-900">{formatCurrency(payout)}</span>
                   </div>
                 ))}
               </div>
 
               <div className="mt-4 pt-4 border-t">
-                <div className="flex justify-between items-center font-bold">
+                <div className="flex justify-between items-center font-bold text-gray-900">
                   <span>Total:</span>
                   <span>{formatCurrency(Object.values(results).reduce((sum, val) => sum + val, 0))}</span>
                 </div>
@@ -410,27 +410,27 @@ export function ExitAnalysis() {
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
                   <span>Investor Payout:</span>
-                  <span className="font-medium">{formatCurrency(singleClassAnalysis.investorPayout)}</span>
+                  <span className="font-bold text-gray-900">{formatCurrency(singleClassAnalysis.investorPayout)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Common Payout:</span>
-                  <span className="font-medium">{formatCurrency(singleClassAnalysis.commonPayout)}</span>
+                  <span className="font-bold text-gray-900">{formatCurrency(singleClassAnalysis.commonPayout)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Conversion Value:</span>
-                  <span className="font-medium">{formatCurrency(singleClassAnalysis.conversionValue)}</span>
+                  <span className="font-bold text-gray-900">{formatCurrency(singleClassAnalysis.conversionValue)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Chose Conversion:</span>
-                  <span className="font-medium">{singleClassAnalysis.choseConversion ? 'Yes' : 'No'}</span>
+                  <span className="font-bold text-gray-900">{singleClassAnalysis.choseConversion ? 'Yes' : 'No'}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Investor ROI:</span>
-                  <span className="font-medium">{singleClassAnalysis.investorROI.toFixed(1)}%</span>
+                  <span className="font-bold text-gray-900">{singleClassAnalysis.investorROI.toFixed(1)}%</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Investor Multiple:</span>
-                  <span className="font-medium">{singleClassAnalysis.investorMultiple.toFixed(2)}x</span>
+                  <span className="font-bold text-gray-900">{singleClassAnalysis.investorMultiple.toFixed(2)}x</span>
                 </div>
               </div>
             </div>

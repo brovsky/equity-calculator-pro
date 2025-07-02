@@ -186,15 +186,15 @@ export function ConvertibleNoteCalculator({ onCalculationUpdate }: ConvertibleNo
               <div className="space-y-2">
                 <div className="flex justify-between">
                   <span className="text-gray-600">Conversion Amount:</span>
-                  <span className="font-medium">{formatCurrency(results.conversionAmount)}</span>
+                  <span className="font-bold text-gray-900">{formatCurrency(results.conversionAmount)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Effective Valuation:</span>
-                  <span className="font-medium">{formatCurrency(results.effectiveValuation)}</span>
+                  <span className="font-bold text-gray-900">{formatCurrency(results.effectiveValuation)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Ownership Percentage:</span>
-                  <span className="font-medium">{results.ownershipPercentage.toFixed(2)}%</span>
+                  <span className="font-bold text-gray-900">{results.ownershipPercentage.toFixed(2)}%</span>
                 </div>
               </div>
             </div>

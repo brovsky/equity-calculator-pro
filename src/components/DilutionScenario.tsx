@@ -362,7 +362,7 @@ export function DilutionScenario({ onDilutionUpdate, onCompanyNameUpdate }: Dilu
                         <td className="text-right py-2">
                           {result.postMoneyValuation > 0 ? formatCurrency(result.postMoneyValuation) : '-'}
                         </td>
-                        <td className="text-right py-2 font-medium">
+                        <td className="text-right py-2 font-bold text-gray-900">
                           {result.founderOwnership.toFixed(1)}%
                         </td>
                       </tr>
@@ -373,8 +373,8 @@ export function DilutionScenario({ onDilutionUpdate, onCompanyNameUpdate }: Dilu
 
               <div className="mt-4 p-3 bg-blue-50 rounded-md">
                 <div className="text-sm text-blue-800">
-                  <div className="font-medium">Final Founder Ownership: {results[results.length - 1]?.founderOwnership.toFixed(1)}%</div>
-                  <div>Total Dilution: {(100 - results[results.length - 1]?.founderOwnership).toFixed(1)}%</div>
+                  <div className="font-bold text-gray-900">Final Founder Ownership: {results[results.length - 1]?.founderOwnership.toFixed(1)}%</div>
+                  <div className="font-bold text-gray-900">Total Dilution: {(100 - results[results.length - 1]?.founderOwnership).toFixed(1)}%</div>
                 </div>
               </div>
             </div>

@@ -187,11 +187,11 @@ export function ValuationCalculator({ onCalculationUpdate }: ValuationCalculator
               <div className="space-y-2">
                 <div className="flex justify-between">
                   <span className="text-gray-600">Pre-Money Valuation:</span>
-                  <span className="font-medium">{formatCurrency(results.preMoneyValuation)}</span>
+                  <span className="font-bold text-gray-900">{formatCurrency(results.preMoneyValuation)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Post-Money Valuation:</span>
-                  <span className="font-medium">{formatCurrency(results.postMoneyValuation)}</span>
+                  <span className="font-bold text-gray-900">{formatCurrency(results.postMoneyValuation)}</span>
                 </div>
               </div>
             </div>
@@ -203,19 +203,19 @@ export function ValuationCalculator({ onCalculationUpdate }: ValuationCalculator
               <div className="space-y-2">
                 <div className="flex justify-between">
                   <span className="text-gray-600">Founder Shares:</span>
-                  <span className="font-medium">{formatNumber(shareResults.founderShares)}</span>
+                  <span className="font-bold text-gray-900">{formatNumber(shareResults.founderShares)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Investor Shares:</span>
-                  <span className="font-medium">{formatNumber(shareResults.investorShares)}</span>
+                  <span className="font-bold text-gray-900">{formatNumber(shareResults.investorShares)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Option Pool Shares:</span>
-                  <span className="font-medium">{formatNumber(shareResults.optionPoolShares)}</span>
+                  <span className="font-bold text-gray-900">{formatNumber(shareResults.optionPoolShares)}</span>
                 </div>
                 <div className="flex justify-between border-t pt-2">
                   <span className="text-gray-600">Price per Share:</span>
-                  <span className="font-medium">${shareResults.pricePerShare.toFixed(4)}</span>
+                  <span className="font-bold text-gray-900">${shareResults.pricePerShare.toFixed(4)}</span>
                 </div>
               </div>
             </div>
