@@ -197,3 +197,4 @@ Copyright © 2025 Scott Brovsky and Equity Calc Pro
 - Original Python implementation provided the calculation logic
 - Design inspired by modern financial tools
 - Built with Next.js and React best practices
+# Force deployment update
