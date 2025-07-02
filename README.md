@@ -65,6 +65,18 @@ pnpm dev
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
+### Adding Your Logo
+
+To add your company logo:
+
+1. Place your logo file in the `public` directory as `logo.png`
+2. Recommended specifications:
+   - **Format**: PNG (for transparency) or SVG
+   - **Size**: 200x80 pixels (will scale automatically)
+   - **Quality**: High resolution for crisp display
+
+If no logo is provided, the application will display a professional placeholder logo.
+
 ## Project Structure
 
 ```

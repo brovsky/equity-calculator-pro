@@ -13,6 +13,49 @@ import { DilutionResult } from '@/lib/types';
 
 type CalculatorType = 'valuation' | 'safe' | 'convertible' | 'dilution' | 'exit';
 
+// Logo component with fallback
+function LogoComponent() {
+  const [logoError, setLogoError] = useState(false);
+  const [placeholderError, setPlaceholderError] = useState(false);
+  
+  if (logoError && placeholderError) {
+    // Final fallback: Show a styled text logo
+    return (
+      <div className="h-20 w-32 bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg flex flex-col items-center justify-center text-white font-bold shadow-lg">
+        <div className="text-sm">EQUITY CALC</div>
+        <div className="text-xs opacity-90">PRO</div>
+      </div>
+    );
+  }
+  
+  if (logoError) {
+    // Try placeholder logo
+    return (
+      <Image 
+        src="/logo-placeholder.svg" 
+        alt="Equity Calculator Pro Logo" 
+        width={200}
+        height={80}
+        className="h-20 w-auto object-contain"
+        priority
+        onError={() => setPlaceholderError(true)}
+      />
+    );
+  }
+  
+  return (
+    <Image 
+      src="/logo.png" 
+      alt="Equity Calculator Pro Logo" 
+      width={200}
+      height={80}
+      className="h-20 w-auto object-contain"
+      priority
+      onError={() => setLogoError(true)}
+    />
+  );
+}
+
 interface BasicCalcData {
   investment: number;
   ownership_pct: number;
@@ -76,14 +119,7 @@ export function EquityCalculator() {
       <div className="max-w-7xl mx-auto">
         <header className="mb-8">
           <div className="flex items-center gap-6 mb-4">
-            <Image 
-              src="/logo.png" 
-              alt="Equity Calculator Pro Logo" 
-              width={200}
-              height={80}
-              className="h-20 w-auto object-contain"
-              priority
-            />
+            <LogoComponent />
             <div>
               <h1 className="main-header text-4xl font-bold text-gray-900 mb-2">
                 Equity Calculator Pro
