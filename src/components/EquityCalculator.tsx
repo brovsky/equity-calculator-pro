@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { ValuationCalculator } from './ValuationCalculator';
 import { SAFECalculator } from './SAFECalculator';
 import { ConvertibleNoteCalculator } from './ConvertibleNoteCalculator';
@@ -41,12 +42,24 @@ export function EquityCalculator() {
     <div className="min-h-screen bg-gray-50 p-4">
       <div className="max-w-7xl mx-auto">
         <header className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">
-            Equity Calculator Pro
-          </h1>
-          <p className="text-gray-600">
-            Comprehensive startup equity and valuation analysis tools
-          </p>
+          <div className="flex items-center gap-6 mb-4">
+            <Image 
+              src="/logo.png" 
+              alt="Equity Calculator Pro Logo" 
+              width={200}
+              height={80}
+              className="h-20 w-auto object-contain"
+              priority
+            />
+            <div>
+              <h1 className="main-header text-4xl font-bold text-gray-900 mb-2">
+                Equity Calculator Pro
+              </h1>
+              <p className="text-gray-600">
+                Comprehensive startup equity and valuation analysis tools
+              </p>
+            </div>
+          </div>
         </header>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
