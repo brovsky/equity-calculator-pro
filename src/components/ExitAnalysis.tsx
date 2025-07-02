@@ -154,7 +154,7 @@ export function ExitAnalysis() {
                   setExitValueDisplay(formatted);
                   setExitValue(e.target.value);
                 }}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
                 placeholder="e.g., 50,000,000"
               />
             </div>
@@ -172,7 +172,7 @@ export function ExitAnalysis() {
                   setCommonSharesDisplay(formatted);
                   setCommonShares(e.target.value);
                 }}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
                 placeholder="e.g., 8,000,000"
               />
             </div>
@@ -189,7 +189,7 @@ export function ExitAnalysis() {
                     type="text"
                     value={newShareClass.name || ''}
                     onChange={(e) => setNewShareClass({...newShareClass, name: e.target.value})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
                     placeholder="e.g., Series A"
                   />
                 </div>
@@ -204,7 +204,7 @@ export function ExitAnalysis() {
                       setSharesDisplay(formatted);
                       setNewShareClass({...newShareClass, shares: numeric || undefined});
                     }}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
                     placeholder="e.g., 2,000,000"
                   />
                 </div>
@@ -218,7 +218,7 @@ export function ExitAnalysis() {
                     step="0.01"
                     value={newShareClass.price || ''}
                     onChange={(e) => setNewShareClass({...newShareClass, price: parseFloat(e.target.value) || undefined})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
                     placeholder="e.g., 2.50"
                   />
                 </div>
@@ -229,7 +229,7 @@ export function ExitAnalysis() {
                     step="0.1"
                     value={newShareClass.liquidationMultiple || ''}
                     onChange={(e) => setNewShareClass({...newShareClass, liquidationMultiple: parseFloat(e.target.value) || 1})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
                     placeholder="e.g., 1"
                   />
                 </div>
@@ -242,7 +242,7 @@ export function ExitAnalysis() {
                     type="number"
                     value={newShareClass.seniority || ''}
                     onChange={(e) => setNewShareClass({...newShareClass, seniority: parseFloat(e.target.value) || 1})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
                     placeholder="e.g., 1"
                   />
                 </div>

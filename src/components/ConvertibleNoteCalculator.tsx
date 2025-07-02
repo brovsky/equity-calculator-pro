@@ -81,7 +81,7 @@ export function ConvertibleNoteCalculator({ onCalculationUpdate }: ConvertibleNo
                 const formatted = formatCurrencyInput(e.target.value);
                 setPreMoneyValuation(formatted);
               }}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
               placeholder="e.g., 8,000,000"
             />
           </div>
@@ -98,7 +98,7 @@ export function ConvertibleNoteCalculator({ onCalculationUpdate }: ConvertibleNo
                 const formatted = formatCurrencyInput(e.target.value);
                 setNoteAmount(formatted);
               }}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
               placeholder="e.g., 500,000"
             />
           </div>
@@ -113,7 +113,7 @@ export function ConvertibleNoteCalculator({ onCalculationUpdate }: ConvertibleNo
               step="0.1"
               value={interestRate}
               onChange={(e) => setInterestRate(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
               placeholder="e.g., 8"
             />
           </div>
@@ -128,7 +128,7 @@ export function ConvertibleNoteCalculator({ onCalculationUpdate }: ConvertibleNo
               step="0.1"
               value={discountRate}
               onChange={(e) => setDiscountRate(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
               placeholder="e.g., 20"
             />
           </div>
@@ -145,7 +145,7 @@ export function ConvertibleNoteCalculator({ onCalculationUpdate }: ConvertibleNo
                 const formatted = formatCurrencyInput(e.target.value);
                 setCap(formatted);
               }}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
               placeholder="e.g., 5,000,000"
             />
           </div>
@@ -160,7 +160,7 @@ export function ConvertibleNoteCalculator({ onCalculationUpdate }: ConvertibleNo
               step="0.1"
               value={timePeriod}
               onChange={(e) => setTimePeriod(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
               placeholder="e.g., 1.5"
             />
           </div>

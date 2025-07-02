@@ -159,7 +159,7 @@ export function DilutionScenario({ onDilutionUpdate, onCompanyNameUpdate }: Dilu
                 <select
                   value={newRound.type}
                   onChange={(e) => setNewRound({...newRound, type: e.target.value as 'SAFE' | 'Convertible Note' | 'Priced Round'})}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
                 >
                   <option value="SAFE">SAFE Note</option>
                   <option value="Convertible Note">Convertible Note</option>
@@ -178,7 +178,7 @@ export function DilutionScenario({ onDilutionUpdate, onCompanyNameUpdate }: Dilu
                     setInvestmentDisplay(formatted);
                     setNewRound({...newRound, investment: numeric || undefined});
                   }}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
                   placeholder="e.g., 1,000,000"
                 />
               </div>
@@ -196,7 +196,7 @@ export function DilutionScenario({ onDilutionUpdate, onCompanyNameUpdate }: Dilu
                         setCapDisplay(formatted);
                         setNewRound({...newRound, cap: numeric || undefined});
                       }}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
                       placeholder="e.g., 5,000,000"
                     />
                   </div>
@@ -207,7 +207,7 @@ export function DilutionScenario({ onDilutionUpdate, onCompanyNameUpdate }: Dilu
                       step="0.1"
                       value={newRound.discount || ''}
                       onChange={(e) => setNewRound({...newRound, discount: parseFloat(e.target.value) || 0})}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
                       placeholder="e.g., 20"
                     />
                   </div>
@@ -227,7 +227,7 @@ export function DilutionScenario({ onDilutionUpdate, onCompanyNameUpdate }: Dilu
                         setCapDisplay(formatted);
                         setNewRound({...newRound, cap: numeric || undefined});
                       }}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
                       placeholder="e.g., 5,000,000"
                     />
                   </div>
@@ -238,7 +238,7 @@ export function DilutionScenario({ onDilutionUpdate, onCompanyNameUpdate }: Dilu
                       step="0.1"
                       value={newRound.interest_rate || ''}
                       onChange={(e) => setNewRound({...newRound, interest_rate: parseFloat(e.target.value) || undefined})}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
                       placeholder="e.g., 8"
                     />
                   </div>
@@ -249,7 +249,7 @@ export function DilutionScenario({ onDilutionUpdate, onCompanyNameUpdate }: Dilu
                       step="0.1"
                       value={newRound.discount || ''}
                       onChange={(e) => setNewRound({...newRound, discount: parseFloat(e.target.value) || 0})}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
                       placeholder="e.g., 20"
                     />
                   </div>
@@ -260,7 +260,7 @@ export function DilutionScenario({ onDilutionUpdate, onCompanyNameUpdate }: Dilu
                       step="0.1"
                       value={newRound.time_period || ''}
                       onChange={(e) => setNewRound({...newRound, time_period: parseFloat(e.target.value) || 1})}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
                       placeholder="e.g., 1.5"
                     />
                   </div>
@@ -275,7 +275,7 @@ export function DilutionScenario({ onDilutionUpdate, onCompanyNameUpdate }: Dilu
                     step="0.1"
                     value={newRound.ownership_percentage || ''}
                     onChange={(e) => setNewRound({...newRound, ownership_percentage: parseFloat(e.target.value) || undefined})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
                     placeholder="e.g., 25"
                   />
                 </div>
@@ -288,7 +288,7 @@ export function DilutionScenario({ onDilutionUpdate, onCompanyNameUpdate }: Dilu
                   step="0.1"
                   value={newRound.option_pool || ''}
                   onChange={(e) => setNewRound({...newRound, option_pool: parseFloat(e.target.value) || 0})}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
                   placeholder="e.g., 15"
                 />
               </div>

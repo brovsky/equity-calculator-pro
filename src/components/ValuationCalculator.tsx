@@ -114,7 +114,7 @@ export function ValuationCalculator({ onCalculationUpdate }: ValuationCalculator
                 const formatted = formatCurrencyInput(e.target.value);
                 setInvestmentAmount(formatted);
               }}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
               placeholder="e.g., 1,000,000"
             />
           </div>
@@ -129,7 +129,7 @@ export function ValuationCalculator({ onCalculationUpdate }: ValuationCalculator
               step="0.1"
               value={ownershipPercentage}
               onChange={(e) => setOwnershipPercentage(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
               placeholder="e.g., 20"
             />
           </div>
@@ -146,7 +146,7 @@ export function ValuationCalculator({ onCalculationUpdate }: ValuationCalculator
                 const formatted = formatSharesInput(e.target.value);
                 setTotalShares(formatted);
               }}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
               placeholder="e.g., 10,000,000"
             />
           </div>
@@ -161,7 +161,7 @@ export function ValuationCalculator({ onCalculationUpdate }: ValuationCalculator
               step="0.1"
               value={optionPoolPercentage}
               onChange={(e) => setOptionPoolPercentage(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
               placeholder="e.g., 15"
             />
           </div>

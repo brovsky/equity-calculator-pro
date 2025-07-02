@@ -75,7 +75,7 @@ export function SAFECalculator({ onCalculationUpdate }: SAFECalculatorProps) {
                 const formatted = formatCurrencyInput(e.target.value);
                 setPreMoneyValuation(formatted);
               }}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
               placeholder="e.g., 8,000,000"
             />
           </div>
@@ -92,7 +92,7 @@ export function SAFECalculator({ onCalculationUpdate }: SAFECalculatorProps) {
                 const formatted = formatCurrencyInput(e.target.value);
                 setSafeAmount(formatted);
               }}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
               placeholder="e.g., 500,000"
             />
           </div>
@@ -109,7 +109,7 @@ export function SAFECalculator({ onCalculationUpdate }: SAFECalculatorProps) {
                 const formatted = formatCurrencyInput(e.target.value);
                 setSafeCap(formatted);
               }}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
               placeholder="e.g., 5,000,000"
             />
           </div>
@@ -124,7 +124,7 @@ export function SAFECalculator({ onCalculationUpdate }: SAFECalculatorProps) {
               step="0.1"
               value={discountRate}
               onChange={(e) => setDiscountRate(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
               placeholder="e.g., 20"
             />
           </div>
