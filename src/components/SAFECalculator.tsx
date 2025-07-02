@@ -4,7 +4,18 @@ import { useState } from 'react';
 import { calculateSAFEDilution } from '@/lib/calculations';
 import { SAFEResult } from '@/lib/types';
 
-export function SAFECalculator() {
+interface BasicCalcData {
+  investment: number;
+  ownership_pct: number;
+  pre_money: number;
+  post_money: number;
+}
+
+interface SAFECalculatorProps {
+  onCalculationUpdate?: (data: BasicCalcData) => void;
+}
+
+export function SAFECalculator({ onCalculationUpdate }: SAFECalculatorProps) {
   const [preMoneyValuation, setPreMoneyValuation] = useState<string>('');
   const [safeAmount, setSafeAmount] = useState<string>('');
   const [safeCap, setSafeCap] = useState<string>('');
@@ -27,6 +38,17 @@ export function SAFECalculator() {
 
       const safeResults = calculateSAFEDilution(preVal, amount, cap, discount);
       setResults(safeResults);
+
+      // Update parent component with calculation data
+      if (onCalculationUpdate) {
+        const calcData: BasicCalcData = {
+          investment: amount,
+          ownership_pct: safeResults.ownershipPercentage,
+          pre_money: preVal,
+          post_money: safeResults.postMoneyValuation
+        };
+        onCalculationUpdate(calcData);
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
       setResults(null);

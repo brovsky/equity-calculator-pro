@@ -4,7 +4,18 @@ import { useState } from 'react';
 import { calculateConvertibleNoteDilution } from '@/lib/calculations';
 import { ConvertibleNoteResult } from '@/lib/types';
 
-export function ConvertibleNoteCalculator() {
+interface BasicCalcData {
+  investment: number;
+  ownership_pct: number;
+  pre_money: number;
+  post_money: number;
+}
+
+interface ConvertibleNoteCalculatorProps {
+  onCalculationUpdate?: (data: BasicCalcData) => void;
+}
+
+export function ConvertibleNoteCalculator({ onCalculationUpdate }: ConvertibleNoteCalculatorProps) {
   const [preMoneyValuation, setPreMoneyValuation] = useState<string>('');
   const [noteAmount, setNoteAmount] = useState<string>('');
   const [interestRate, setInterestRate] = useState<string>('');
@@ -33,6 +44,17 @@ export function ConvertibleNoteCalculator() {
         preVal, amount, interest, discount, capVal, time
       );
       setResults(convertibleResults);
+
+      // Update parent component with calculation data
+      if (onCalculationUpdate) {
+        const calcData: BasicCalcData = {
+          investment: convertibleResults.conversionAmount,
+          ownership_pct: convertibleResults.ownershipPercentage,
+          pre_money: preVal,
+          post_money: preVal + convertibleResults.conversionAmount
+        };
+        onCalculationUpdate(calcData);
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
       setResults(null);

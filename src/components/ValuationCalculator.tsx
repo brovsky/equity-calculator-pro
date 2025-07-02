@@ -4,7 +4,25 @@ import { useState } from 'react';
 import { calculateValuations, calculateShareDistribution } from '@/lib/calculations';
 import { ValuationResult, ShareDistribution } from '@/lib/types';
 
-export function ValuationCalculator() {
+interface BasicCalcData {
+  investment: number;
+  ownership_pct: number;
+  pre_money: number;
+  post_money: number;
+  shares?: {
+    total: number;
+    founder: number;
+    investor: number;
+    option_pool: number;
+    price_per_share: number;
+  };
+}
+
+interface ValuationCalculatorProps {
+  onCalculationUpdate?: (data: BasicCalcData) => void;
+}
+
+export function ValuationCalculator({ onCalculationUpdate }: ValuationCalculatorProps) {
   const [investmentAmount, setInvestmentAmount] = useState<string>('');
   const [ownershipPercentage, setOwnershipPercentage] = useState<string>('');
   const [totalShares, setTotalShares] = useState<string>('');
@@ -27,6 +45,13 @@ export function ValuationCalculator() {
       const valuationResults = calculateValuations(investment, ownership);
       setResults(valuationResults);
 
+      let calcData: BasicCalcData = {
+        investment,
+        ownership_pct: ownership,
+        pre_money: valuationResults.preMoneyValuation,
+        post_money: valuationResults.postMoneyValuation
+      };
+
       if (totalShares) {
         const shares = parseFloat(totalShares);
         const optionPool = optionPoolPercentage ? parseFloat(optionPoolPercentage) : 0;
@@ -39,7 +64,25 @@ export function ValuationCalculator() {
             optionPool
           );
           setShareResults(shareDistribution);
+          
+          if (shareDistribution) {
+            calcData = {
+              ...calcData,
+              shares: {
+                total: shares,
+                founder: shareDistribution.founderShares,
+                investor: shareDistribution.investorShares,
+                option_pool: shareDistribution.optionPoolShares,
+                price_per_share: shareDistribution.pricePerShare
+              }
+            };
+          }
         }
+      }
+
+      // Update parent component with calculation data
+      if (onCalculationUpdate) {
+        onCalculationUpdate(calcData);
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');

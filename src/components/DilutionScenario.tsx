@@ -4,11 +4,17 @@ import { useState } from 'react';
 import { runDilutionScenario } from '@/lib/calculations';
 import { DilutionRound, DilutionResult } from '@/lib/types';
 
-export function DilutionScenario() {
+interface DilutionScenarioProps {
+  onDilutionUpdate?: (data: DilutionResult[]) => void;
+  onCompanyNameUpdate?: (name: string) => void;
+}
+
+export function DilutionScenario({ onDilutionUpdate, onCompanyNameUpdate }: DilutionScenarioProps) {
   const [initialFounderOwnership, setInitialFounderOwnership] = useState<string>('100');
   const [rounds, setRounds] = useState<DilutionRound[]>([]);
   const [results, setResults] = useState<DilutionResult[]>([]);
   const [error, setError] = useState<string>('');
+  const [companyName, setCompanyName] = useState<string>('Your Company');
 
   const [newRound, setNewRound] = useState<Partial<DilutionRound>>({
     type: 'SAFE',
@@ -75,6 +81,14 @@ export function DilutionScenario() {
 
       const scenarioResults = runDilutionScenario(ownership, rounds);
       setResults(scenarioResults);
+
+      // Update parent components
+      if (onDilutionUpdate) {
+        onDilutionUpdate(scenarioResults);
+      }
+      if (onCompanyNameUpdate) {
+        onCompanyNameUpdate(companyName);
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
       setResults([]);
@@ -100,6 +114,20 @@ export function DilutionScenario() {
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="space-y-6">
+          <div>
+            <label htmlFor="companyName" className="block text-sm font-medium text-gray-700 mb-2">
+              Company Name
+            </label>
+            <input
+              id="companyName"
+              type="text"
+              value={companyName}
+              onChange={(e) => setCompanyName(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              placeholder="Enter your company name"
+            />
+          </div>
+
           <div>
             <label htmlFor="initialOwnership" className="block text-sm font-medium text-gray-700 mb-2">
               Initial Founder Ownership (%)

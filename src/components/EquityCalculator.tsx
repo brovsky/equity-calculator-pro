@@ -8,11 +8,43 @@ import { ConvertibleNoteCalculator } from './ConvertibleNoteCalculator';
 import { DilutionScenario } from './DilutionScenario';
 import { ExitAnalysis } from './ExitAnalysis';
 import { StartupGlossary } from './StartupGlossary';
+import { ExportShare } from './ExportShare';
+import { DilutionResult } from '@/lib/types';
 
 type CalculatorType = 'valuation' | 'safe' | 'convertible' | 'dilution' | 'exit';
 
+interface BasicCalcData {
+  investment: number;
+  ownership_pct: number;
+  pre_money: number;
+  post_money: number;
+  shares?: {
+    total: number;
+    founder: number;
+    investor: number;
+    option_pool: number;
+    price_per_share: number;
+  };
+}
+
 export function EquityCalculator() {
   const [activeCalculator, setActiveCalculator] = useState<CalculatorType>('valuation');
+  const [calculationData, setCalculationData] = useState<BasicCalcData | null>(null);
+  const [dilutionData, setDilutionData] = useState<DilutionResult[] | null>(null);
+  const [companyName, setCompanyName] = useState<string>('Your Company');
+
+  // Callback functions to update shared state
+  const updateCalculationData = (data: BasicCalcData) => {
+    setCalculationData(data);
+  };
+
+  const updateDilutionData = (data: DilutionResult[]) => {
+    setDilutionData(data);
+  };
+
+  const updateCompanyName = (name: string) => {
+    setCompanyName(name);
+  };
 
   const calculators = [
     { id: 'valuation', name: 'Valuation Calculator', description: 'Calculate pre and post-money valuations' },
@@ -25,17 +57,17 @@ export function EquityCalculator() {
   const renderCalculator = () => {
     switch (activeCalculator) {
       case 'valuation':
-        return <ValuationCalculator />;
+        return <ValuationCalculator onCalculationUpdate={updateCalculationData} />;
       case 'safe':
-        return <SAFECalculator />;
+        return <SAFECalculator onCalculationUpdate={updateCalculationData} />;
       case 'convertible':
-        return <ConvertibleNoteCalculator />;
+        return <ConvertibleNoteCalculator onCalculationUpdate={updateCalculationData} />;
       case 'dilution':
-        return <DilutionScenario />;
+        return <DilutionScenario onDilutionUpdate={updateDilutionData} onCompanyNameUpdate={updateCompanyName} />;
       case 'exit':
         return <ExitAnalysis />;
       default:
-        return <ValuationCalculator />;
+        return <ValuationCalculator onCalculationUpdate={updateCalculationData} />;
     }
   };
 
@@ -92,6 +124,15 @@ export function EquityCalculator() {
             </div>
           </main>
         </div>
+
+        {/* Export & Share Section */}
+        {calculationData && (
+          <ExportShare 
+            basicCalcData={calculationData}
+            dilutionData={dilutionData || undefined}
+            companyName={companyName}
+          />
+        )}
 
         {/* Startup Funding Glossary Section */}
         <StartupGlossary />
