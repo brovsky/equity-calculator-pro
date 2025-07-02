@@ -14,7 +14,14 @@ export function formatNumber(value: string | number): string {
 export function parseFormattedNumber(value: string): number {
   // Remove commas and parse as number
   const cleaned = value.replace(/,/g, '');
-  return parseFloat(cleaned) || 0;
+  
+  // Return 0 for empty string or just decimal point
+  if (cleaned === '' || cleaned === '.') return 0;
+  
+  const parsed = parseFloat(cleaned);
+  
+  // Return 0 for NaN to maintain existing behavior, but could be changed to throw error if needed
+  return isNaN(parsed) ? 0 : parsed;
 }
 
 export function formatCurrency(amount: number): string {

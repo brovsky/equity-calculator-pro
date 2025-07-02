@@ -46,6 +46,10 @@ export function calculateShareDistribution(
     throw new Error("Option pool percentage must be between 0 and 100");
   }
 
+  if (totalShares <= 0) {
+    throw new Error("Total shares must be greater than 0");
+  }
+
   const postMoneyValuation = preMoneyValuation + investmentAmount;
   const pricePerShare = postMoneyValuation / totalShares;
 
@@ -114,6 +118,10 @@ export function calculatePricedRoundDilution(
   investmentAmount: number,
   pricePerShare: number
 ): PricedRoundResult {
+  if (pricePerShare <= 0) {
+    throw new Error("Price per share must be greater than 0");
+  }
+
   const postMoneyValuation = preMoneyValuation + investmentAmount;
   const sharesIssued = investmentAmount / pricePerShare;
   const ownershipPercentage = (investmentAmount / postMoneyValuation) * 100;
@@ -171,6 +179,9 @@ export function runDilutionScenario(
       
     } else if (type === 'Priced Round') {
       ownershipPct = roundData.ownership_percentage!;
+      if (ownershipPct <= 0) {
+        throw new Error(`Invalid ownership percentage for round ${i + 1}: ${ownershipPct}`);
+      }
       postMoneyValuation = investment / (ownershipPct / 100);
     }
     
