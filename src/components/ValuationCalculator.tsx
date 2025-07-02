@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { calculateValuations, calculateShareDistribution } from '@/lib/calculations';
 import { ValuationResult, ShareDistribution } from '@/lib/types';
+import { formatCurrencyInput, formatSharesInput, parseFormattedNumber, formatCurrency } from '@/lib/formatters';
 
 interface BasicCalcData {
   investment: number;
@@ -35,7 +36,7 @@ export function ValuationCalculator({ onCalculationUpdate }: ValuationCalculator
     try {
       setError('');
       
-      const investment = parseFloat(investmentAmount);
+      const investment = parseFormattedNumber(investmentAmount);
       const ownership = parseFloat(ownershipPercentage);
       
       if (isNaN(investment) || isNaN(ownership)) {
@@ -53,7 +54,7 @@ export function ValuationCalculator({ onCalculationUpdate }: ValuationCalculator
       };
 
       if (totalShares) {
-        const shares = parseFloat(totalShares);
+        const shares = parseFormattedNumber(totalShares);
         const optionPool = optionPoolPercentage ? parseFloat(optionPoolPercentage) : 0;
         
         if (!isNaN(shares)) {
@@ -91,15 +92,6 @@ export function ValuationCalculator({ onCalculationUpdate }: ValuationCalculator
     }
   };
 
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    }).format(amount);
-  };
-
   const formatNumber = (num: number) => {
     return new Intl.NumberFormat('en-US').format(Math.round(num));
   };
@@ -116,11 +108,14 @@ export function ValuationCalculator({ onCalculationUpdate }: ValuationCalculator
             </label>
             <input
               id="investment"
-              type="number"
+              type="text"
               value={investmentAmount}
-              onChange={(e) => setInvestmentAmount(e.target.value)}
+              onChange={(e) => {
+                const formatted = formatCurrencyInput(e.target.value);
+                setInvestmentAmount(formatted);
+              }}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              placeholder="e.g., 1000000"
+              placeholder="e.g., 1,000,000"
             />
           </div>
 
@@ -145,11 +140,14 @@ export function ValuationCalculator({ onCalculationUpdate }: ValuationCalculator
             </label>
             <input
               id="totalShares"
-              type="number"
+              type="text"
               value={totalShares}
-              onChange={(e) => setTotalShares(e.target.value)}
+              onChange={(e) => {
+                const formatted = formatSharesInput(e.target.value);
+                setTotalShares(formatted);
+              }}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              placeholder="e.g., 10000000"
+              placeholder="e.g., 10,000,000"
             />
           </div>
 

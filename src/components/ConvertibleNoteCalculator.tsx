@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { calculateConvertibleNoteDilution } from '@/lib/calculations';
 import { ConvertibleNoteResult } from '@/lib/types';
+import { formatCurrencyInput, parseFormattedNumber, formatCurrency } from '@/lib/formatters';
 
 interface BasicCalcData {
   investment: number;
@@ -29,12 +30,12 @@ export function ConvertibleNoteCalculator({ onCalculationUpdate }: ConvertibleNo
     try {
       setError('');
       
-      const preVal = parseFloat(preMoneyValuation);
-      const amount = parseFloat(noteAmount);
+      const preVal = parseFormattedNumber(preMoneyValuation);
+      const amount = parseFormattedNumber(noteAmount);
       const interest = parseFloat(interestRate);
       const discount = parseFloat(discountRate);
       const time = parseFloat(timePeriod);
-      const capVal = cap ? parseFloat(cap) : undefined;
+      const capVal = cap ? parseFormattedNumber(cap) : undefined;
       
       if (isNaN(preVal) || isNaN(amount) || isNaN(interest) || isNaN(discount) || isNaN(time)) {
         throw new Error('Please enter valid numbers for all required fields');
@@ -61,14 +62,6 @@ export function ConvertibleNoteCalculator({ onCalculationUpdate }: ConvertibleNo
     }
   };
 
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    }).format(amount);
-  };
 
   return (
     <div>
@@ -82,11 +75,14 @@ export function ConvertibleNoteCalculator({ onCalculationUpdate }: ConvertibleNo
             </label>
             <input
               id="preMoneyValuation"
-              type="number"
+              type="text"
               value={preMoneyValuation}
-              onChange={(e) => setPreMoneyValuation(e.target.value)}
+              onChange={(e) => {
+                const formatted = formatCurrencyInput(e.target.value);
+                setPreMoneyValuation(formatted);
+              }}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              placeholder="e.g., 8000000"
+              placeholder="e.g., 8,000,000"
             />
           </div>
 
@@ -96,11 +92,14 @@ export function ConvertibleNoteCalculator({ onCalculationUpdate }: ConvertibleNo
             </label>
             <input
               id="noteAmount"
-              type="number"
+              type="text"
               value={noteAmount}
-              onChange={(e) => setNoteAmount(e.target.value)}
+              onChange={(e) => {
+                const formatted = formatCurrencyInput(e.target.value);
+                setNoteAmount(formatted);
+              }}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              placeholder="e.g., 500000"
+              placeholder="e.g., 500,000"
             />
           </div>
 
@@ -140,11 +139,14 @@ export function ConvertibleNoteCalculator({ onCalculationUpdate }: ConvertibleNo
             </label>
             <input
               id="cap"
-              type="number"
+              type="text"
               value={cap}
-              onChange={(e) => setCap(e.target.value)}
+              onChange={(e) => {
+                const formatted = formatCurrencyInput(e.target.value);
+                setCap(formatted);
+              }}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              placeholder="e.g., 5000000"
+              placeholder="e.g., 5,000,000"
             />
           </div>
 

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { calculateSAFEDilution } from '@/lib/calculations';
 import { SAFEResult } from '@/lib/types';
+import { formatCurrencyInput, parseFormattedNumber, formatCurrency } from '@/lib/formatters';
 
 interface BasicCalcData {
   investment: number;
@@ -27,9 +28,9 @@ export function SAFECalculator({ onCalculationUpdate }: SAFECalculatorProps) {
     try {
       setError('');
       
-      const preVal = parseFloat(preMoneyValuation);
-      const amount = parseFloat(safeAmount);
-      const cap = parseFloat(safeCap);
+      const preVal = parseFormattedNumber(preMoneyValuation);
+      const amount = parseFormattedNumber(safeAmount);
+      const cap = parseFormattedNumber(safeCap);
       const discount = discountRate ? parseFloat(discountRate) : 0;
       
       if (isNaN(preVal) || isNaN(amount) || isNaN(cap)) {
@@ -55,14 +56,6 @@ export function SAFECalculator({ onCalculationUpdate }: SAFECalculatorProps) {
     }
   };
 
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    }).format(amount);
-  };
 
   return (
     <div>
@@ -76,11 +69,14 @@ export function SAFECalculator({ onCalculationUpdate }: SAFECalculatorProps) {
             </label>
             <input
               id="preMoneyValuation"
-              type="number"
+              type="text"
               value={preMoneyValuation}
-              onChange={(e) => setPreMoneyValuation(e.target.value)}
+              onChange={(e) => {
+                const formatted = formatCurrencyInput(e.target.value);
+                setPreMoneyValuation(formatted);
+              }}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              placeholder="e.g., 8000000"
+              placeholder="e.g., 8,000,000"
             />
           </div>
 
@@ -90,11 +86,14 @@ export function SAFECalculator({ onCalculationUpdate }: SAFECalculatorProps) {
             </label>
             <input
               id="safeAmount"
-              type="number"
+              type="text"
               value={safeAmount}
-              onChange={(e) => setSafeAmount(e.target.value)}
+              onChange={(e) => {
+                const formatted = formatCurrencyInput(e.target.value);
+                setSafeAmount(formatted);
+              }}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              placeholder="e.g., 500000"
+              placeholder="e.g., 500,000"
             />
           </div>
 
@@ -104,11 +103,14 @@ export function SAFECalculator({ onCalculationUpdate }: SAFECalculatorProps) {
             </label>
             <input
               id="safeCap"
-              type="number"
+              type="text"
               value={safeCap}
-              onChange={(e) => setSafeCap(e.target.value)}
+              onChange={(e) => {
+                const formatted = formatCurrencyInput(e.target.value);
+                setSafeCap(formatted);
+              }}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              placeholder="e.g., 5000000"
+              placeholder="e.g., 5,000,000"
             />
           </div>
 

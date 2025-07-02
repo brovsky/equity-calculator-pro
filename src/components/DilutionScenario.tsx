@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { runDilutionScenario } from '@/lib/calculations';
 import { DilutionRound, DilutionResult } from '@/lib/types';
+import { formatCurrencyInput, parseFormattedNumber } from '@/lib/formatters';
 
 interface DilutionScenarioProps {
   onDilutionUpdate?: (data: DilutionResult[]) => void;
@@ -23,6 +24,10 @@ export function DilutionScenario({ onDilutionUpdate, onCompanyNameUpdate }: Dilu
     discount: 0,
     option_pool: 0
   });
+
+  // Formatted input states
+  const [investmentDisplay, setInvestmentDisplay] = useState<string>('');
+  const [capDisplay, setCapDisplay] = useState<string>('');
 
   const handleAddRound = () => {
     try {
@@ -61,6 +66,9 @@ export function DilutionScenario({ onDilutionUpdate, onCompanyNameUpdate }: Dilu
         discount: 0,
         option_pool: 0
       });
+      // Clear display states
+      setInvestmentDisplay('');
+      setCapDisplay('');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
     }
@@ -162,11 +170,16 @@ export function DilutionScenario({ onDilutionUpdate, onCompanyNameUpdate }: Dilu
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Investment Amount ($)</label>
                 <input
-                  type="number"
-                  value={newRound.investment || ''}
-                  onChange={(e) => setNewRound({...newRound, investment: parseFloat(e.target.value) || undefined})}
+                  type="text"
+                  value={investmentDisplay}
+                  onChange={(e) => {
+                    const formatted = formatCurrencyInput(e.target.value);
+                    const numeric = parseFormattedNumber(e.target.value);
+                    setInvestmentDisplay(formatted);
+                    setNewRound({...newRound, investment: numeric || undefined});
+                  }}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="e.g., 1000000"
+                  placeholder="e.g., 1,000,000"
                 />
               </div>
 
@@ -175,11 +188,16 @@ export function DilutionScenario({ onDilutionUpdate, onCompanyNameUpdate }: Dilu
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Valuation Cap ($)</label>
                     <input
-                      type="number"
-                      value={newRound.cap || ''}
-                      onChange={(e) => setNewRound({...newRound, cap: parseFloat(e.target.value) || undefined})}
+                      type="text"
+                      value={capDisplay}
+                      onChange={(e) => {
+                        const formatted = formatCurrencyInput(e.target.value);
+                        const numeric = parseFormattedNumber(e.target.value);
+                        setCapDisplay(formatted);
+                        setNewRound({...newRound, cap: numeric || undefined});
+                      }}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="e.g., 5000000"
+                      placeholder="e.g., 5,000,000"
                     />
                   </div>
                   <div>
@@ -198,6 +216,21 @@ export function DilutionScenario({ onDilutionUpdate, onCompanyNameUpdate }: Dilu
 
               {newRound.type === 'Convertible Note' && (
                 <>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Valuation Cap ($) - Optional</label>
+                    <input
+                      type="text"
+                      value={capDisplay}
+                      onChange={(e) => {
+                        const formatted = formatCurrencyInput(e.target.value);
+                        const numeric = parseFormattedNumber(e.target.value);
+                        setCapDisplay(formatted);
+                        setNewRound({...newRound, cap: numeric || undefined});
+                      }}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      placeholder="e.g., 5,000,000"
+                    />
+                  </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Interest Rate (%)</label>
                     <input

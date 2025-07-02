@@ -3,10 +3,17 @@
 import { useState } from 'react';
 import { calculateExitProceeds, calculateLiquidationPreferenceImpact } from '@/lib/calculations';
 import { ShareClass, ExitProceeds, LiquidationPreferenceResult } from '@/lib/types';
+import { formatCurrencyInput, formatSharesInput, parseFormattedNumber } from '@/lib/formatters';
 
 export function ExitAnalysis() {
   const [exitValue, setExitValue] = useState<string>('');
   const [commonShares, setCommonShares] = useState<string>('');
+
+  // Formatted input states
+  const [exitValueDisplay, setExitValueDisplay] = useState<string>('');
+  const [commonSharesDisplay, setCommonSharesDisplay] = useState<string>('');
+  const [sharesDisplay, setSharesDisplay] = useState<string>('');
+  const [investmentDisplay, setInvestmentDisplay] = useState<string>('');
   const [shareClasses, setShareClasses] = useState<ShareClass[]>([]);
   const [results, setResults] = useState<ExitProceeds | null>(null);
   const [singleClassAnalysis, setSingleClassAnalysis] = useState<LiquidationPreferenceResult | null>(null);
@@ -53,6 +60,7 @@ export function ExitAnalysis() {
         participating: false,
         seniority: 1
       });
+      setSharesDisplay('');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
     }
@@ -62,8 +70,8 @@ export function ExitAnalysis() {
     try {
       setError('');
       
-      const exit = parseFloat(exitValue);
-      const common = parseFloat(commonShares);
+      const exit = parseFormattedNumber(exitValue);
+      const common = parseFormattedNumber(commonShares);
       
       if (isNaN(exit) || isNaN(common)) {
         throw new Error('Please enter valid numbers for exit value and common shares');
@@ -83,8 +91,8 @@ export function ExitAnalysis() {
 
   const handleSingleClassAnalysis = () => {
     try {
-      const exit = parseFloat(exitValue);
-      const investment = parseFloat(singleAnalysis.investment);
+      const exit = parseFormattedNumber(exitValue);
+      const investment = parseFormattedNumber(singleAnalysis.investment);
       const ownership = parseFloat(singleAnalysis.ownershipPct) / 100;
       const liqMultiple = parseFloat(singleAnalysis.liquidationMultiple);
       const partCap = singleAnalysis.participationCap ? parseFloat(singleAnalysis.participationCap) : undefined;
@@ -139,11 +147,15 @@ export function ExitAnalysis() {
               </label>
               <input
                 id="exitValue"
-                type="number"
-                value={exitValue}
-                onChange={(e) => setExitValue(e.target.value)}
+                type="text"
+                value={exitValueDisplay}
+                onChange={(e) => {
+                  const formatted = formatCurrencyInput(e.target.value);
+                  setExitValueDisplay(formatted);
+                  setExitValue(e.target.value);
+                }}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="e.g., 50000000"
+                placeholder="e.g., 50,000,000"
               />
             </div>
 
@@ -153,11 +165,15 @@ export function ExitAnalysis() {
               </label>
               <input
                 id="commonShares"
-                type="number"
-                value={commonShares}
-                onChange={(e) => setCommonShares(e.target.value)}
+                type="text"
+                value={commonSharesDisplay}
+                onChange={(e) => {
+                  const formatted = formatSharesInput(e.target.value);
+                  setCommonSharesDisplay(formatted);
+                  setCommonShares(e.target.value);
+                }}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="e.g., 8000000"
+                placeholder="e.g., 8,000,000"
               />
             </div>
           </div>
@@ -180,11 +196,16 @@ export function ExitAnalysis() {
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Shares</label>
                   <input
-                    type="number"
-                    value={newShareClass.shares || ''}
-                    onChange={(e) => setNewShareClass({...newShareClass, shares: parseFloat(e.target.value) || undefined})}
+                    type="text"
+                    value={sharesDisplay}
+                    onChange={(e) => {
+                      const formatted = formatSharesInput(e.target.value);
+                      const numeric = parseFormattedNumber(e.target.value);
+                      setSharesDisplay(formatted);
+                      setNewShareClass({...newShareClass, shares: numeric || undefined});
+                    }}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="e.g., 2000000"
+                    placeholder="e.g., 2,000,000"
                   />
                 </div>
               </div>
@@ -284,11 +305,15 @@ export function ExitAnalysis() {
                 <div>
                   <label className="block text-sm font-medium text-blue-800 mb-2">Investment ($)</label>
                   <input
-                    type="number"
-                    value={singleAnalysis.investment}
-                    onChange={(e) => setSingleAnalysis({...singleAnalysis, investment: e.target.value})}
+                    type="text"
+                    value={investmentDisplay}
+                    onChange={(e) => {
+                      const formatted = formatCurrencyInput(e.target.value);
+                      setInvestmentDisplay(formatted);
+                      setSingleAnalysis({...singleAnalysis, investment: e.target.value});
+                    }}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md"
-                    placeholder="e.g., 5000000"
+                    placeholder="e.g., 5,000,000"
                   />
                 </div>
                 <div>
