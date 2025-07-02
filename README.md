@@ -1,4 +1,4 @@
-# Equity Calculator Pro
+# Equity Calc Pro
 
 A comprehensive startup equity and valuation analysis tool built with Next.js and TypeScript. This modern web application helps founders and investors calculate valuations, model dilution scenarios, and analyze complex equity structures.
 

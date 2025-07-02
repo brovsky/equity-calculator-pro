@@ -33,7 +33,7 @@ function LogoComponent() {
     return (
       <Image 
         src="/logo-placeholder.svg" 
-        alt="Equity Calculator Pro Logo" 
+        alt="Equity Calc Pro Logo" 
         width={200}
         height={80}
         className="h-20 w-auto object-contain"
@@ -46,7 +46,7 @@ function LogoComponent() {
   return (
     <Image 
       src="/logo.png" 
-      alt="Equity Calculator Pro Logo" 
+      alt="Equity Calc Pro Logo" 
       width={200}
       height={80}
       className="h-20 w-auto object-contain"
@@ -122,7 +122,7 @@ export function EquityCalculator() {
             <LogoComponent />
             <div>
               <h1 className="main-header text-4xl font-bold text-gray-900 mb-2">
-                Equity Calculator Pro
+                Equity Calc Pro
               </h1>
               <p className="text-gray-600">
                 Comprehensive startup equity and valuation analysis tools
