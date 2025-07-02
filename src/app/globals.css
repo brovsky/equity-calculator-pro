@@ -124,3 +124,35 @@ body {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     margin: 20px 0;
 }
+
+/* Glossary specific styles */
+.glossary-term-card {
+    background-color: #fafbfc;
+    transition: all 0.2s ease;
+}
+
+.glossary-term-card:hover {
+    background-color: #f0f7ff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.1);
+}
+
+.glossary-term-card h4 {
+    color: #1e40af;
+}
+
+/* Glossary section styling */
+.glossary-section {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border-radius: 20px;
+    padding: 40px;
+    margin: 40px 0;
+}
+
+/* Letter headers in glossary */
+.glossary-letter-header {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
